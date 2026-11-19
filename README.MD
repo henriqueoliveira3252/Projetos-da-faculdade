@@ -4,7 +4,7 @@ Jogo acadêmico de combate por rodadas para dois jogadores no mesmo navegador, d
 
 ## Como executar e jogar
 
-1. Abra a pasta `Projetos-da-faculdade/Projeto-gb` e abra `index.html` no navegador. Se usar o VS Code com a extensão Live Server, clique com o botão direito em `index.html` e escolha **Open with Live Server**.
+1. Abra a pasta `Projetos-da-faculdade´ e abra `index.html` no navegador. Se usar o VS Code com a extensão Live Server, clique com o botão direito em `index.html` e escolha **Open with Live Server**.
 2. Clique em **Entrar na Arena**. Selecione um personagem para cada jogador e, se quiser, preencha os apelidos. Os dois podem escolher a mesma classe.
 3. Confira os atributos e clique em **Iniciar Batalha**. Escolha uma ação em cada painel e clique em **Executar Rodada**.
 4. Acompanhe os golpes no campo e consulte o resumo da rodada abaixo da arena. Use **Nova Batalha** para voltar à seleção.
