@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Batalha RPG — Classes</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <header class="topo">
+        <div class="container">
+            <a class="marca" href="./index.html">⚔️ Batalha RPG</a>
+            <nav class="menu" aria-label="Navegação principal">
+                <a href="./index.html">Início</a>
+                <a class="ativo" href="./classes.html" aria-current="page">Classes</a>
+                <a href="./arena.html">Arena</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="painel">
+            <div class="cabecalho-secao">
+                <div>
+                    <h1>Classes Jogáveis</h1>
+                    <p class="subtitulo-secao">Analise os atributos base e as habilidades especiais de cada combatente antes de entrar na arena.</p>
+                </div>
+                <a class="btn btn-primario" href="./arena.html">⚔️ Ir para a Arena</a>
+            </div>
+
+            <div class="grade-classes">
+                <!-- NOX -->
+                <article class="card-classe" data-classe="nox">
+                    <div class="arte-card-classe">
+                        <img src="./img/personagens/nox-corpo.svg" alt="Nox — Assassino">
+                    </div>
+                    <div class="conteudo-card-classe">
+                        <div class="topo-card-classe">
+                            <h2>Nox</h2>
+                            <span class="tag-classe">Assassino</span>
+                        </div>
+                        <ul class="lista-atributos-card">
+                            <li><span>❤️ Vida</span><strong>85</strong></li>
+                            <li><span>⚔️ Ataque</span><strong>34</strong></li>
+                            <li><span>🛡️ Defesa</span><strong>6</strong></li>
+                        </ul>
+                        <div class="bloco-habilidade">
+                            <h3>✨ Golpe Sombrio (Ofensiva)</h3>
+                            <p>Soma <strong>+12</strong> ao ataque neste golpe para causar dano explosivo.</p>
+                        </div>
+                        <div class="bloco-habilidade">
+                            <h3>🛡️ Passo Sombrio (Defensiva)</h3>
+                            <p>Esquiva completamente o próximo golpe recebido na rodada.</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- ÍRIS -->
+                <article class="card-classe" data-classe="iris">
+                    <div class="arte-card-classe">
+                        <img src="./img/personagens/iris-corpo.svg" alt="Íris — Mago">
+                    </div>
+                    <div class="conteudo-card-classe">
+                        <div class="topo-card-classe">
+                            <h2>Íris</h2>
+                            <span class="tag-classe">Mago</span>
+                        </div>
+                        <ul class="lista-atributos-card">
+                            <li><span>❤️ Vida</span><strong>100</strong></li>
+                            <li><span>⚔️ Ataque</span><strong>30</strong></li>
+                            <li><span>🛡️ Defesa</span><strong>8</strong></li>
+                        </ul>
+                        <div class="bloco-habilidade">
+                            <h3>✨ Raio Arcano (Ofensiva)</h3>
+                            <p>Dispara um feixe energético que ignora metade da defesa base do alvo.</p>
+                        </div>
+                        <div class="bloco-habilidade">
+                            <h3>🛡️ Barreira Arcana (Defensiva)</h3>
+                            <p>Ergue um escudo prismático que absorve até <strong>12 de dano</strong> do próximo golpe.</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- BRONN -->
+                <article class="card-classe" data-classe="bronn">
+                    <div class="arte-card-classe">
+                        <img src="./img/personagens/bronn-corpo.svg" alt="Bronn — Tanque">
+                    </div>
+                    <div class="conteudo-card-classe">
+                        <div class="topo-card-classe">
+                            <h2>Bronn</h2>
+                            <span class="tag-classe">Tanque</span>
+                        </div>
+                        <ul class="lista-atributos-card">
+                            <li><span>❤️ Vida</span><strong>135</strong></li>
+                            <li><span>⚔️ Ataque</span><strong>23</strong></li>
+                            <li><span>🛡️ Defesa</span><strong>14</strong></li>
+                        </ul>
+                        <div class="bloco-habilidade">
+                            <h3>✨ Investida de Escudo (Ofensiva)</h3>
+                            <p>Soma <strong>+6</strong> ao ataque e garante proteção de até <strong>6 de dano</strong> contra o próximo golpe após executar.</p>
+                        </div>
+                        <div class="bloco-habilidade">
+                            <h3>🛡️ Muralha (Defensiva)</h3>
+                            <p>Posiciona placas pesadas que reduzem pela metade o dano do próximo golpe.</p>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="rodape">
+        <div class="container">
+            <p>Projeto Batalha RPG • Desenvolvimento Web (HTML5, CSS3 e JavaScript)</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Batalha RPG — Arena</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body class="pagina-arena">
+    <!-- Cenário animado de fundo exclusivo da Arena -->
+    <div class="arena-cenario" aria-hidden="true">
+        <div class="arena-base-arte"></div>
+        <div class="arena-ruinas"></div>
+        <div class="arena-plataforma">
+            <div class="arena-runas"></div>
+        </div>
+        <div class="arena-nevoa nevoa-fundo"></div>
+        <div class="arena-nevoa nevoa-frente"></div>
+
+        <div class="arena-cristais cristais-esquerda">
+            <div class="cristal-halo"></div>
+            <div class="cristal c1"></div>
+            <div class="cristal c2"></div>
+            <div class="cristal c3"></div>
+        </div>
+
+        <div class="arena-cristais cristais-direita">
+            <div class="cristal-halo"></div>
+            <div class="cristal c1"></div>
+            <div class="cristal c2"></div>
+            <div class="cristal c3"></div>
+        </div>
+
+        <div class="arena-particulas">
+            <span class="particula p1"></span>
+            <span class="particula p2"></span>
+            <span class="particula p3"></span>
+            <span class="particula p4"></span>
+            <span class="particula p5"></span>
+            <span class="particula p6"></span>
+            <span class="particula p7"></span>
+            <span class="particula p8"></span>
+            <span class="particula p9"></span>
+            <span class="particula p10"></span>
+        </div>
+
+        <div class="arena-vinheta-leitura"></div>
+    </div>
+
+    <header class="topo">
+        <div class="container">
+            <a class="marca" href="./index.html">⚔️ Batalha RPG</a>
+            <nav class="menu" aria-label="Navegação principal">
+                <a href="./index.html">Início</a>
+                <a href="./classes.html">Classes</a>
+                <a class="ativo" href="./arena.html" aria-current="page">Arena</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container container-arena">
+        <!-- Painel de Seleção de Lutadores -->
+        <section id="painelSelecao" class="painel" aria-labelledby="tituloSelecao">
+            <h1 id="tituloSelecao">Preparar Duelo na Arena</h1>
+            <p class="subtitulo-secao">Selecione os personagens dos dois jogadores e personalize seus apelidos antes de iniciar.</p>
+
+            <form id="formSelecao" novalidate>
+                <div class="grade-dupla">
+                    <!-- Jogador 1 -->
+                    <div class="grupo-jogador">
+                        <h2>Jogador 1</h2>
+                        <div class="campo-form">
+                            <label for="classeJ1">Personagem</label>
+                            <select id="classeJ1" name="classeJ1">
+                                <option value="">-- Selecione um personagem --</option>
+                                <option value="nox">Nox (Assassino)</option>
+                                <option value="iris">Íris (Mago)</option>
+                                <option value="bronn">Bronn (Tanque)</option>
+                            </select>
+                        </div>
+                        <div class="campo-form">
+                            <label for="apelidoJ1">Apelido (opcional)</label>
+                            <input type="text" id="apelidoJ1" name="apelidoJ1" maxlength="24" placeholder="Ex.: Sombra Veloz">
+                        </div>
+                        <div id="previaJ1" class="previa-lutador" aria-live="polite"></div>
+                    </div>
+
+                    <!-- Jogador 2 -->
+                    <div class="grupo-jogador">
+                        <h2>Jogador 2</h2>
+                        <div class="campo-form">
+                            <label for="classeJ2">Personagem</label>
+                            <select id="classeJ2" name="classeJ2">
+                                <option value="">-- Selecione um personagem --</option>
+                                <option value="nox">Nox (Assassino)</option>
+                                <option value="iris">Íris (Mago)</option>
+                                <option value="bronn">Bronn (Tanque)</option>
+                            </select>
+                        </div>
+                        <div class="campo-form">
+                            <label for="apelidoJ2">Apelido (opcional)</label>
+                            <input type="text" id="apelidoJ2" name="apelidoJ2" maxlength="24" placeholder="Ex.: Guardião de Ferro">
+                        </div>
+                        <div id="previaJ2" class="previa-lutador" aria-live="polite"></div>
+                    </div>
+                </div>
+
+                <p id="mensagemValidacao" class="mensagem-validacao" role="alert" aria-live="assertive"></p>
+
+                <div class="acoes-form">
+                    <button type="submit" id="btnIniciar" class="btn btn-primario">⚔️ Iniciar Batalha</button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Campo de Batalha -->
+        <section id="secaoCampoBatalha" class="painel" tabindex="-1" aria-label="Campo de Batalha">
+            <div class="status-rodada">
+                <div>
+                    <span class="rotulo-status">Rodada</span>
+                    <strong id="numeroRodada">0</strong>
+                </div>
+                <div>
+                    <span class="rotulo-status">Iniciativa</span>
+                    <strong id="textoIniciativa">Aguardando início</strong>
+                </div>
+                <div>
+                    <span class="rotulo-status">Rodadas sem dano</span>
+                    <strong id="contadorSemDano">0 / 3</strong>
+                </div>
+            </div>
+
+            <div class="campo-batalha-grid">
+                <!-- Coluna Jogador 1 -->
+                <article class="personagem coluna-j1" aria-label="Painel do Jogador 1">
+                    <div class="cabecalho-personagem">
+                        <div id="molduraRetratoJ1" class="moldura-retrato" data-classe="">
+                            <div id="retratoJ1" class="retrato-personagem"></div>
+                        </div>
+                        <div class="info-personagem">
+                            <span class="etiqueta-jogador">Jogador 1</span>
+                            <h2 id="nomeAtacante">---</h2>
+                            <p id="classeAtacanteTela" class="classe-badge">Aguardando seleção</p>
+                        </div>
+                    </div>
+
+                    <div class="atributos-lista">
+                        <span>⚔️ Ataque: <strong id="ataqueAtacante">0</strong></span>
+                        <span>🛡️ Defesa: <strong id="defesaAtacante">0</strong></span>
+                    </div>
+
+                    <div class="bloco-vida">
+                        <div class="texto-vida">
+                            <span>❤️ Vida</span>
+                            <span><strong id="vidaAtacante">0</strong> / <span id="vidaMaxAtacante">0</span></span>
+                        </div>
+                        <div id="barraContainerAtacante" class="barra-vida" role="progressbar" aria-label="Vida do Jogador 1" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100">
+                            <div id="vidaBarraAtacante" class="barra-vida-progresso"></div>
+                        </div>
+                    </div>
+
+                    <fieldset class="seletor-acao">
+                        <legend>Ação do Jogador 1</legend>
+
+                        <label class="opcao-acao" for="radioBasicoJ1">
+                            <input type="radio" id="radioBasicoJ1" name="acaoJ1" value="basico" checked>
+                            <span id="iconeBasicoJ1" class="icone-habilidade" aria-hidden="true"></span>
+                            <span class="detalhes-opcao">
+                                <span class="titulo-opcao">
+                                    <span>Ataque Básico</span>
+                                    <span class="badge-recarga pronta">Livre</span>
+                                </span>
+                                <span class="desc-opcao">Golpe direto com o ataque base.</span>
+                            </span>
+                        </label>
+
+                        <label class="opcao-acao" for="radioOfensivaJ1">
+                            <input type="radio" id="radioOfensivaJ1" name="acaoJ1" value="ofensiva">
+                            <span id="iconeOfensivaJ1" class="icone-habilidade" aria-hidden="true"></span>
+                            <span class="detalhes-opcao">
+                                <span class="titulo-opcao">
+                                    <span id="nomeOfensivaJ1">Habilidade Ofensiva</span>
+                                    <span id="statusOfensivaJ1" class="badge-recarga">Aguardando</span>
+                                </span>
+                                <span id="descOfensivaJ1" class="desc-opcao">Selecione um personagem.</span>
+                            </span>
+                        </label>
+
+                        <label class="opcao-acao" for="radioDefensivaJ1">
+                            <input type="radio" id="radioDefensivaJ1" name="acaoJ1" value="defensiva">
+                            <span id="iconeDefensivaJ1" class="icone-habilidade" aria-hidden="true"></span>
+                            <span class="detalhes-opcao">
+                                <span class="titulo-opcao">
+                                    <span id="nomeDefensivaJ1">Habilidade Defensiva</span>
+                                    <span id="statusDefensivaJ1" class="badge-recarga">Aguardando</span>
+                                </span>
+                                <span id="descDefensivaJ1" class="desc-opcao">Selecione um personagem.</span>
+                            </span>
+                        </label>
+                    </fieldset>
+                </article>
+
+                <!-- Palco Central da Arena -->
+                <div id="palcoArena" class="palco-arena" aria-label="Palco de combate visual">
+                    <div id="camadaEfeitosArena" class="camada-efeitos-arena" aria-hidden="true"></div>
+
+                    <div class="halo-vitoria" aria-hidden="true"></div>
+                    <div class="particulas-vitoria" aria-hidden="true">
+                        <span class="faisca-vitoria f1"></span>
+                        <span class="faisca-vitoria f2"></span>
+                        <span class="faisca-vitoria f3"></span>
+                        <span class="faisca-vitoria f4"></span>
+                        <span class="faisca-vitoria f5"></span>
+                        <span class="faisca-vitoria f6"></span>
+                    </div>
+
+                    <div id="bannerDesfecho" class="banner-desfecho" aria-hidden="true">
+                        <div class="banner-moldura">
+                            <div class="banner-brilho"></div>
+                            <span class="banner-ornamento"></span>
+                            <h2 id="tituloDesfecho" class="banner-desfecho-titulo"></h2>
+                            <p id="subtituloDesfecho" class="banner-desfecho-subtitulo"></p>
+                        </div>
+                    </div>
+
+                    <div class="piso-arena" aria-hidden="true"></div>
+
+                    <div class="lutadores-palco">
+                        <div id="palcoLutadorJ1" class="slot-lutador lado-j1" data-classe="">
+                            <div id="efeitosLutadorJ1" class="efeitos-lutador" aria-hidden="true"></div>
+                            <div id="figuraJ1" class="figura-corpo-inteiro" role="img" aria-label="Lutador do Jogador 1"></div>
+                            <span id="plaquetaJ1" class="plaqueta-lutador">J1 • Aguardando</span>
+                        </div>
+
+                        <div id="palcoLutadorJ2" class="slot-lutador lado-j2" data-classe="">
+                            <div id="efeitosLutadorJ2" class="efeitos-lutador" aria-hidden="true"></div>
+                            <div id="figuraJ2" class="figura-corpo-inteiro" role="img" aria-label="Lutador do Jogador 2"></div>
+                            <span id="plaquetaJ2" class="plaqueta-lutador">J2 • Aguardando</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Coluna Jogador 2 -->
+                <article class="personagem coluna-j2" aria-label="Painel do Jogador 2">
+                    <div class="cabecalho-personagem">
+                        <div id="molduraRetratoJ2" class="moldura-retrato" data-classe="">
+                            <div id="retratoJ2" class="retrato-personagem"></div>
+                        </div>
+                        <div class="info-personagem">
+                            <span class="etiqueta-jogador">Jogador 2</span>
+                            <h2 id="nomeDefensor">---</h2>
+                            <p id="classeDefensorTela" class="classe-badge">Aguardando seleção</p>
+                        </div>
+                    </div>
+
+                    <div class="atributos-lista">
+                        <span>⚔️ Ataque: <strong id="ataqueDefensor">0</strong></span>
+                        <span>🛡️ Defesa: <strong id="defesaDefensor">0</strong></span>
+                    </div>
+
+                    <div class="bloco-vida">
+                        <div class="texto-vida">
+                            <span>❤️ Vida</span>
+                            <span><strong id="vidaDefensor">0</strong> / <span id="vidaMaxDefensor">0</span></span>
+                        </div>
+                        <div id="barraContainerDefensor" class="barra-vida" role="progressbar" aria-label="Vida do Jogador 2" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100">
+                            <div id="vidaBarraDefensor" class="barra-vida-progresso"></div>
+                        </div>
+                    </div>
+
+                    <fieldset class="seletor-acao">
+                        <legend>Ação do Jogador 2</legend>
+
+                        <label class="opcao-acao" for="radioBasicoJ2">
+                            <input type="radio" id="radioBasicoJ2" name="acaoJ2" value="basico" checked>
+                            <span id="iconeBasicoJ2" class="icone-habilidade" aria-hidden="true"></span>
+                            <span class="detalhes-opcao">
+                                <span class="titulo-opcao">
+                                    <span>Ataque Básico</span>
+                                    <span class="badge-recarga pronta">Livre</span>
+                                </span>
+                                <span class="desc-opcao">Golpe direto com o ataque base.</span>
+                            </span>
+                        </label>
+
+                        <label class="opcao-acao" for="radioOfensivaJ2">
+                            <input type="radio" id="radioOfensivaJ2" name="acaoJ2" value="ofensiva">
+                            <span id="iconeOfensivaJ2" class="icone-habilidade" aria-hidden="true"></span>
+                            <span class="detalhes-opcao">
+                                <span class="titulo-opcao">
+                                    <span id="nomeOfensivaJ2">Habilidade Ofensiva</span>
+                                    <span id="statusOfensivaJ2" class="badge-recarga">Aguardando</span>
+                                </span>
+                                <span id="descOfensivaJ2" class="desc-opcao">Selecione um personagem.</span>
+                            </span>
+                        </label>
+
+                        <label class="opcao-acao" for="radioDefensivaJ2">
+                            <input type="radio" id="radioDefensivaJ2" name="acaoJ2" value="defensiva">
+                            <span id="iconeDefensivaJ2" class="icone-habilidade" aria-hidden="true"></span>
+                            <span class="detalhes-opcao">
+                                <span class="titulo-opcao">
+                                    <span id="nomeDefensivaJ2">Habilidade Defensiva</span>
+                                    <span id="statusDefensivaJ2" class="badge-recarga">Aguardando</span>
+                                </span>
+                                <span id="descDefensivaJ2" class="desc-opcao">Selecione um personagem.</span>
+                            </span>
+                        </label>
+                    </fieldset>
+                </article>
+            </div>
+
+            <div class="controles-batalha">
+                <button type="button" id="btnAtacar" class="btn btn-primario" disabled>⚔️ Executar Rodada</button>
+                <button type="button" id="btnNovaBatalha" class="btn btn-secundario">🔄 Nova Batalha</button>
+            </div>
+
+            <div id="resultado" class="resultado" aria-live="polite"></div>
+        </section>
+    </main>
+
+    <footer class="rodape">
+        <div class="container">
+            <p>Projeto Batalha RPG • Desenvolvimento Web (HTML5, CSS3 e JavaScript)</p>
+        </div>
+    </footer>
+
+    <script src="./script.js"></script>
+</body>
+</html>
